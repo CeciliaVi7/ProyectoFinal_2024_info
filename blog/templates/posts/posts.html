@@ -21,14 +21,30 @@
         <li>
             <a href="{% url 'about'%}">About</a>
         </li>
+        <li>
+            
+            {% if user.is_authenticated %}
+            <h3>{{user.username}}</h3>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Cerrar Sesion</button>
+            </form>
+            {% else %}
+            <a href="{% url 'login'%}">Iniciar Sesion</a>
+            {% endif %}
+        </li>
+        <li><a href="{% url 'detalle_post' %}">Ver detalles</a>
+        </li>
         
     </div>
     <h1>Noticias</h1>
 
     {% for noticia in noticias  %}
     <h2>{{noticia.titulo}}</h2>
-    <p>{{noticia.contenido}}</p>
+    <img src="{{ noticia.imagen.url}}" style="height: 200px;"
+    <p>{{noticia.contenido  | truncatechars:20}}</p>
     <p>{{noticia.fecha_publicacion}} </p>
+    <hr>
     {% endfor  %}
 
 </body>
