@@ -1,51 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias</title>
-    <style>body{
-        background-color: blue ;
-        color:white;
-        }
-        </style>
-</head>
-<body>
-    <div>
-        <li>
-            <a href="{% url 'noticias' %}">Noticias</a>
-        </li>
-        <li>
-            <a href="{% url 'registro'%}">Registro</a>
-        </li> 
-        <li>
-            <a href="{% url 'about'%}">About</a>
-        </li>
-        <li>
-            
-            {% if user.is_authenticated %}
-            <h3>{{user.username}}</h3>
-            <form action="{% url 'logout' %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Cerrar Sesion</button>
-            </form>
-            {% else %}
-            <a href="{% url 'login'%}">Iniciar Sesion</a>
-            {% endif %}
-        </li>
-        <li><a href="{% url 'detalle_post' %}">Ver detalles</a>
-        </li>
-        
-    </div>
+{% extends 'base.html' %}
+
+{% block titulo %}
+Noticias
+{% endblock titulo %}
+
+{% block content %}
+   
+ </div>
     <h1>Noticias</h1>
 
     {% for noticia in noticias  %}
     <h2>{{noticia.titulo}}</h2>
-    <img src="{{ noticia.imagen.url}}" style="height: 200px;"
-    <p>{{noticia.contenido  | truncatechars:20}}</p>
-    <p>{{noticia.fecha_publicacion}} </p>
+    <img src="{{ noticia.imagen.url}}" style="height: 200px;" />
+    <p>{{noticia.contenido  | truncatechars:50}} <a href="{% url 'detalle' noticia.id %}">ver más...</a></p>
     <hr>
     {% endfor  %}
 
-</body>
-</html>
+    {% endblock content %}

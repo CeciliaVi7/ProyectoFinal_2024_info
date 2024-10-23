@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, User  # Mantener la importación de User si lo usas
 
+
+
 # Create your models here.
 # Usuarios con atributos nuevos
 class User(AbstractUser):

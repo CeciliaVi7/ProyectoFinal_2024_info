@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Posts
+from .models import Posts, User
 # Create your views here.
 
 #vista basada en funciones
@@ -16,8 +16,15 @@ def post_id(request, id):
     ctx["noticia"]=noticia
     return render(request, "posts/detalle.html", ctx)
 
+
 def about_us(request):
     return render(request, "posts/about_us.html")
+
+def perfil (request):
+    ctx={}
+    usuarios= User.objects.all()
+    ctx["usuarios"]=usuarios
+    return render (request, "usuarios/perfil.html", ctx)
 
 #def registro(request):
     #return render (request,"usuarios/registro.html")

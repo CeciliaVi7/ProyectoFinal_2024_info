@@ -1,5 +1,12 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Detalles de la Noticias
+{% endblock titulo %}
+{% block content %}
 <h1>Detalle</h1>
 <h1>{{noticia}}</h1>
-<img src="{{noticia.imagen.url}}" style="height: 200px;"
+<img class= "img-detalle" src="{{noticia.imagen.url}}" style="height: 200px;"
 <p>{{noticia.contenido}}</p>
 <p>{{noticia.fecha_publicacion}}</p>
+{% endblock content %}

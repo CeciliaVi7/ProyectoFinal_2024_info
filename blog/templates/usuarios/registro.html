@@ -1,23 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro </title>
-    <style>body{
-        background-color: blue ;
-        color:white;
-        }
-        </style>
-</head>
-<body>
-    <h1>Registro de Usuarios</h1>  
+{% extends 'base.html' %}
 
-   <form method="post">  
+{% block titulo %}
+Registro
+{% endblock titulo %}
+
+{% block content %}
+<h1>Registro de Usuarios</h1>
+
+<form method="post" enctype="multipart/form-data">  
     {% csrf_token %}
-    {{form.as_p}}
+    {{ form.as_p }}  
     <button type="submit">Enviar</button>
-   </form> 
-   
-</body>
-</html>
+</form> 
+
+{% endblock content %}
+

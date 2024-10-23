@@ -1,0 +1,34 @@
+body{
+    background-color: blue;
+    color: white ;
+    margin: 10%;
+    padding: 3%;
+
+}
+
+header {
+    color: white;
+    padding: 16px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+.logo{
+    width: 150px;
+    height: 95px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.img-detalle {
+     display: block;
+     margin-left: auto;
+     margin-right: auto;
+
+}
+.img-perfil {
+    width: 150px;
+}

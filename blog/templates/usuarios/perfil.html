@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Perfil de usuario {% endblock titulo%}
+
+{% block contenido %}
+<h1>Perfil de usuarios</h1>
+
+
+<h1>{{usuarios.id}} --> {{usuarios.username}}</h1>
+{% if usuarios.icono != Null %}
+<img src="{{usuarios.icono.url}}" alt="asd" class="img-perfil">
+{% endif %}
+
+{% endblock contenido %}
