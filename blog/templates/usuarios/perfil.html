@@ -1,14 +1,21 @@
 {% extends 'base.html' %}
-
-{% block titulo %} Perfil de usuario {% endblock titulo%}
-
-{% block contenido %}
-<h1>Perfil de usuarios</h1>
+{% load static %}
 
 
-<h1>{{usuarios.id}} --> {{usuarios.username}}</h1>
-{% if usuarios.icono != Null %}
-<img src="{{usuarios.icono.url}}" alt="asd" class="img-perfil">
+{% block title %}
+Perfil de {{ usuarios.username }}
+{% endblock %}
+
+{% block content %}
+<h1>Perfil de {{ usuarios.username }}</h1>
+<p>Acerca de mí:</p>
+<p>{{ usuarios.profile.bio|default:"No hay información disponible." }}</p>
+<p>Vistas del perfil: {{ usuarios.profile.views|default:0 }}</p>
+<p><a href="#">Denunciar abuso</a></p>
+
+{% if usuarios.icono %}
+    <img src="{{ usuarios.icono.url }}" alt="Icono de {{ usuarios.username }}" class="img-perfil">
+{% else %}
+    <img src="{% static 'img/default-icon.png' %}" alt="Icono por defecto" class="img-perfil">
 {% endif %}
-
-{% endblock contenido %}
+{% endblock %}

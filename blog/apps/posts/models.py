@@ -53,6 +53,13 @@ class Posts(models.Model):  # nombreapp_nombreclase
     # post=models.ForeignKey(Posts,on_delete=models.CASCADE)
 
 
+class Perfil(models.Model):
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    biografia = models.TextField(blank=True, default="")
+    vistas = models.IntegerField(default=0)
+
+
+
 class Comentarios(models.Model):
  fecha_publicacion = models.DateTimeField(auto_now_add=True)    
  contenido = models.TextField(max_length=250, verbose_name="Contenido")

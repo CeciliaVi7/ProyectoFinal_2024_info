@@ -8,7 +8,10 @@ urlpatterns = [
   path("registro/", views.Registro.as_view(), name="registro"),
 
   path("detalle/<int:id>/", views.post_id, name="detalle"),
-  path("perfil/", views.perfil, name="perfil"),
-
-
+  # perfil del usuario
+  path("perfil/<int:id>/", views.perfil, name="perfil"),
+  # crear nuevo post
+  path("nuevo_post/", views.CrearPost.as_view(), name="nuevo_post"),
+  #Eliminar post
+  path("borrar/<int:pk>/", views.BorrarPost.as_view(), name="borrar_post"),
 ]
