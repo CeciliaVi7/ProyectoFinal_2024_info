@@ -8,17 +8,29 @@ Noticias
 
 <section>
    {% if user.is_authenticated %}
-   <a href="{% url 'nuevo_post' %}"><button>Nuevo Post</button></a>
+   <a href="{% url 'nuevo_post' %}" class="btn btn-success">Nuevo Post</a>
    <hr>
    {% endif %}
+   <div>
+   <a href="?ordenar=fecha">Ordenar por fecha</a>
+   <a href="?ordenar=alfabetico">Ordenar alfabéticamente</a>
+   </div>
+   <div>
+      <a href="{% url 'noticias' %}">Todas</a>
+      {% for categoria in categorias %}  
+      <a href="?categoria={{categoria.nombre}}">{{categoria.nombre}}></a>
+      {% endfor %}  
+   </div>
+   <hr>
 </section>
+
   
   
   
  </div>
     <h1>Noticias</h1>
 
-    {% for noticia in noticias  %}
+    {% for noticia in object_list %}
     <h2>{{noticia.titulo}}</h2>
     {% if noticia.imagen %}
     <img src="{{ noticia.imagen.url }}" style="height: 200px;" alt="Imagen de {{ noticia.titulo }}">
@@ -28,8 +40,11 @@ Noticias
 
     <p>{{noticia.contenido  | truncatechars:50}} <a href="{% url 'detalle' noticia.id %}">ver más...</a></p>
     <p>{{ noticia.fecha_publicacion }}</p>
+    <a href="?autor={{ noticia.autor.username }}"><small>{{ noticia.autor.username }}</small></a>
+
+    <p>{{noticia.categoria}}</p>
     {% if user.id ==  noticia.autor_id %}
-    <a href="{% url 'borrar_post' noticia.id %}"><button type="submit">Eliminar</button></a>
+    <a href="{% url 'borrar_post' noticia.id %}"><button type="submit" class="btn btn-danger">Eliminar</button></a>
     {% endif%}
 
     <hr>

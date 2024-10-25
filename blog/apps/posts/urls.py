@@ -3,7 +3,9 @@ from django.urls import path
 from. import views
 
 urlpatterns = [
-  path("", views.posts, name="noticias"), 
+  
+    # vbc
+  path("", views.Noticias.as_view(), name="noticias"),
   path("about/", views.about_us, name="about") ,
   path("registro/", views.Registro.as_view(), name="registro"),
 
@@ -14,4 +16,15 @@ urlpatterns = [
   path("nuevo_post/", views.CrearPost.as_view(), name="nuevo_post"),
   #Eliminar post
   path("borrar/<int:pk>/", views.BorrarPost.as_view(), name="borrar_post"),
+  #modificar post
+  path("modificar/<int:pk>/", views.ModificarPost.as_view(), name="modificar_post"),
+  #Comentario
+  path("comentar/<int:post_id>/", views.comentar_post, name="comentar"),
+  #Modificar Comentario
+  path("modificar_com/<int:pk>",views.ModificarComentario.as_view(),name="modificar_comentario",),
+  #Eliminar Comentario
+  path("borrar/<int:pk>", views.EliminarComentario.as_view(), name="borrar_comentario"),
+  
+
+  
 ]

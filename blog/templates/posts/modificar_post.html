@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Modificar Post
+{% endblock titulo %}
+
+{% block content %}
+<h1>Modificar Post</h1>
+
+<!-- Muestra el contenido actual del post -->
+<div>
+    <h2>Contenido Actual:</h2>
+    <div>
+        {{ form.instance.contenido|linebreaks }}  <!-- Muestra el contenido actual con saltos de línea -->
+    </div>
+</div>
+
+<!-- Formulario para modificar el post -->
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Esto renderiza el formulario con cada campo en un párrafo -->
+    <input type="submit" value="Guardar cambios" class="btn btn-primary">  <!-- Botón para enviar el formulario -->
+</form>
+
+<a href="{% url 'noticias' %}">Cancelar</a> 
+{% endblock %}
+

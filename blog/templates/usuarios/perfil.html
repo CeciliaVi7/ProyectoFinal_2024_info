@@ -1,21 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block title %}
-Perfil de {{ usuarios.username }}
+Perfil de {{ usuario.username }}
 {% endblock %}
 
 {% block content %}
-<h1>Perfil de {{ usuarios.username }}</h1>
-<p>Acerca de mí:</p>
-<p>{{ usuarios.profile.bio|default:"No hay información disponible." }}</p>
-<p>Vistas del perfil: {{ usuarios.profile.views|default:0 }}</p>
-<p><a href="#">Denunciar abuso</a></p>
+<h1>Perfil de {{ usuario.username }}</h1>
+<p>En blog desde {{ usuario.date_joined|date:"d M Y" }}</p>  <!-- Verifica que esta línea esté presente -->
+<p>Vistas del perfil - {{ usuario.vistas }}</p>
+<p>Biografía: {{ usuario.descripcion }}</p>
 
-{% if usuarios.icono %}
-    <img src="{{ usuarios.icono.url }}" alt="Icono de {{ usuarios.username }}" class="img-perfil">
+{% if usuario.icono %}
+    <img src="{{ usuario.icono.url }}" alt="Icono de {{ usuario.username }}" class="img-perfil">
 {% else %}
     <img src="{% static 'img/default-icon.png' %}" alt="Icono por defecto" class="img-perfil">
 {% endif %}
+
+<h2>Posts de {{ usuario.username }}</h2>
+<ul>
+    {% for post in posts %}
+        <li><a href="{% url 'detalle' post.id %}">{{ post.titulo }}</a> - {{ post.fecha_publicacion|date:"d M Y" }}</li>
+    {% empty %}
+        <li>No hay posts publicados por este usuario.</li>
+    {% endfor %}
+</ul>
 {% endblock %}

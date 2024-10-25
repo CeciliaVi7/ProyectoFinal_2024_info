@@ -1,8 +1,9 @@
 body{
-    background-color: blue;
+    background-color: black;
     color: white ;
     margin: 10%;
     padding: 3%;
+    font-family: 'Audiowide', sans-serif;
 
 }
 
@@ -32,3 +33,4 @@ header {
 .img-perfil {
     width: 150px;
 }
+

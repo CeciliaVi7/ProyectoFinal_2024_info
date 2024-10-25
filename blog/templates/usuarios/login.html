@@ -5,14 +5,27 @@ Inicio de Sesion
 {% endblock titulo %}
 
 {% block content %}
-</div> 
-   <h1>Inicio de Sesión</h1>
+<div> 
+    <h1>Inicio de Sesión</h1>
+</div>
 
-<form action=""method="post">
-     {% csrf_token %}
-     {{ form.as_p}}
-     <input type="submit">
+<form action="" method="post">
+    {% csrf_token %}
+    
+    {{ form.username.label_tag }}
+    {{ form.username }}
+    
+    {{ form.password.label_tag }}
+    {{ form.password }}
+    
+    <div class="form-group">
+      <label for="id_remember_me"> Recordarme</label>
+      <input type="checkbox" name="remember_me" id="id_remember_me">
+    </div>
+
+    
+
+    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
 </form>
-</div>  
 
 {% endblock content %}

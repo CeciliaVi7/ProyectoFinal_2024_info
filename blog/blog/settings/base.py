@@ -1,3 +1,4 @@
+
 """
 Django settings for blog project.
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "apps.posts",
+    
     
 ]
 
@@ -97,6 +99,8 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 #         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
 #      },
 # ]
+
+
 
 
 # Internationalization

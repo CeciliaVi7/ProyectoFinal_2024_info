@@ -1,13 +1,15 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, User  # Mantener la importación de User si lo usas
-
+from django.contrib.auth.models import AbstractUser, User # Mantener la importación de User si lo usas
 
 
 # Create your models here.
 # Usuarios con atributos nuevos
 class User(AbstractUser):
     icono = models.ImageField(upload_to="media/usuarios", null=True, blank=True)
-    descripcion = models.TextField(max_length=350)
+    descripcion = models.TextField(max_length=350, blank=True)  # Hacerlo opcional si es necesario
+    date_joined = models.DateTimeField(auto_now_add=True)
+    vistas = models.IntegerField(default=0)
+    print(User.date_joined)
 
     def __str__(self):
         return self.username
@@ -53,15 +55,12 @@ class Posts(models.Model):  # nombreapp_nombreclase
     # post=models.ForeignKey(Posts,on_delete=models.CASCADE)
 
 
-class Perfil(models.Model):
-    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-    biografia = models.TextField(blank=True, default="")
-    vistas = models.IntegerField(default=0)
+
 
 
 
 class Comentarios(models.Model):
- fecha_publicacion = models.DateTimeField(auto_now_add=True)    
- contenido = models.TextField(max_length=250, verbose_name="Contenido")
- autor = models.ForeignKey(User, on_delete=models.CASCADE)
- post = models.ForeignKey(Posts, on_delete=models.CASCADE)
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE)
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    contenido = models.TextField()
+    fecha_comentario = models.DateTimeField(auto_now_add=True, null=True)  

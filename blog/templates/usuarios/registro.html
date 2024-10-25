@@ -6,12 +6,12 @@ Registro
 
 {% block content %}
 <h1>Registro de Usuarios</h1>
-
+<div class="mb-3">
 <form method="post" enctype="multipart/form-data">  
     {% csrf_token %}
     {{ form.as_p }}  
-    <button type="submit">Enviar</button>
+    <button type="submit" class="btn btn-primary">Enviar</button>
 </form> 
-
+</div> 
 {% endblock content %}
 
